@@ -1,15 +1,11 @@
 package com.few.more.java.inventoryservice.service;
 
-import com.few.more.java.inventoryservice.dto.InventoryResponse;
+
 import com.few.more.java.inventoryservice.model.Inventory;
 import com.few.more.java.inventoryservice.repo.InventoryRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -17,6 +13,7 @@ import java.util.Optional;
 public class InventoryService {
     @Autowired
     private InventoryRepo inventoryRepo;
+
     @Transactional(readOnly = true)
     public List<InventoryResponse> isInStock(List<String> skuCode){
 

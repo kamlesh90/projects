@@ -6,6 +6,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import com.few.more.java.orderservice.external.InventoryResponse;
+
 import org.springframework.stereotype.Service;
 
 import com.few.more.java.orderservice.dto.ItemDto;
