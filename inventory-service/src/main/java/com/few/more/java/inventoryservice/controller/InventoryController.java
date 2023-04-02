@@ -1,5 +1,6 @@
 package com.few.more.java.inventoryservice.controller;
 
+
 import com.few.more.java.inventoryservice.model.Inventory;
 import com.few.more.java.inventoryservice.service.InventoryService;
 import lombok.RequiredArgsConstructor;
@@ -14,9 +15,12 @@ import java.util.Optional;
 public class InventoryController {
     @Autowired
     private InventoryService inventoryService;
-    @GetMapping("/{sku-code}")
+
+    // http://localhost:8082/api/inventory/iphone-13,iphone-13-red,mobile
+    // http://localhost:8082/api/inventory?skuCode=iphone-13&skuCode=iphone-13-red&skuCode=TV
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public boolean isInStock(@PathVariable("sku-code") String skuCode){
+    public List<InventoryResponse> isInStock(@RequestParam List<String> skuCode){
 
        return inventoryService.isInStock(skuCode);
     }
