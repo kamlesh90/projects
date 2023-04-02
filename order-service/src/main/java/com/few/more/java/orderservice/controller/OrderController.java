@@ -19,9 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class OrderController {
-
 	final OrderService orderService;
-	
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public String placeOrder(@RequestBody OrderRequest orderRequest) {
