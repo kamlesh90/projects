@@ -1,5 +1,5 @@
-D:\GitRepo\microservices-new\inventory-service\src\main\java\com\programmingtechie\Inventoryservice\controller\InventoryController.java
-D:\GitRepo\microservices-new\inventory-service\src\main\java\com\programmingtechie\Inventoryservice\model\Inventory.java
-D:\GitRepo\microservices-new\inventory-service\src\main\java\com\programmingtechie\Inventoryservice\service\InventoryService.java
-D:\GitRepo\microservices-new\inventory-service\src\main\java\com\programmingtechie\Inventoryservice\InventoryServiceApplication.java
-D:\GitRepo\microservices-new\inventory-service\src\main\java\com\programmingtechie\Inventoryservice\repository\InventoryRepositroy.java
+D:\GitRepo\projects\microservices-new\inventory-service\src\main\java\com\programmingtechie\Inventoryservice\model\Inventory.java
+D:\GitRepo\projects\microservices-new\inventory-service\src\main\java\com\programmingtechie\Inventoryservice\service\InventoryService.java
+D:\GitRepo\projects\microservices-new\inventory-service\src\main\java\com\programmingtechie\Inventoryservice\controller\InventoryController.java
+D:\GitRepo\projects\microservices-new\inventory-service\src\main\java\com\programmingtechie\Inventoryservice\InventoryServiceApplication.java
+D:\GitRepo\projects\microservices-new\inventory-service\src\main\java\com\programmingtechie\Inventoryservice\repository\InventoryRepositroy.java
