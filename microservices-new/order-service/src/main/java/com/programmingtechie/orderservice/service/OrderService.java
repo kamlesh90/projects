@@ -21,7 +21,7 @@ import java.util.UUID;
 @Transactional
 public class OrderService {
     private final OrderRepository orderRepository;
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
     public String placeOrder(OrderRequest orderRequest){
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
@@ -32,12 +32,13 @@ public class OrderService {
         order.setOrderLineItemsList(orderLineItemsList);
 
         //make call to inventory service to check if the product is in stock or not
-        List<String> skuCodes = orderLineItemsList.stream()
+        List<String> skuCodes = order.getOrderLineItemsList()
+                .stream()
                 .map(OrderLineItems::getSkuCode)
                 .toList();
 
-        InventoryResponse[] inventoryResponsesArray = webClient.get()
-                .uri("http://localhost:8082/api/inventory",
+        InventoryResponse[] inventoryResponsesArray = webClientBuilder.build().get()
+                .uri("http://inventory-service/api/inventory",
                         uriBuilder -> uriBuilder.queryParam("skuCodes",skuCodes).build())
                 .retrieve()
                 .bodyToMono(InventoryResponse[].class)
