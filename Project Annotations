@@ -1,0 +1,87 @@
+Project Annotations 
+===================
+@Resource vs @Inject vs @Autowired -> All three are the dependency resolver annotations. but diff is their execution path
+									  Two of the three annotations belong to the Java extension package: javax.annotation.Resource and javax.inject.Inject. The @Autowired annotation 
+									  belongs to the org.springframework.beans.factory.annotation package.
+									  @Resource -> by default resolves dependency -> by Name
+									  @Inject  ->  by Type 
+									  @Autowired ->by Type  
+
+@ComponentScan -> We use the @ComponentScan annotation to search packages for Java classes that have been annotated with the @Component annotation
+
+@Document(value = "product")->@Document is an annotation provided by Spring data project. It is used to identify a domain object, which is persisted to MongoDB. 
+			      So you can use it to map a Java class into a collection inside MongoDB. If you don't use Spring Data, you don't need this annotation
+
+@AllArgsConstructor -> The @AllArgsConstructor annotation generates a constructor with one parameter for every field in the class. Fields that are annotated with 
+		       @NonNull result in null checks with the corresponding parameters in the constructor. The annotation won't generate a parameter for the static 
+		       and initialized final fields.
+
+@NoArgsConstructor -> The @NoArgsConstructor annotation is used to generate the no-argument constructor for a class. In this case, the class consists of final fields. 
+		      Using this annotation makes the compiler throw a compile-time error. 
+
+@Builder -> Project Lombok's @Builder is a helpful mechanism for using the Builder pattern without writing boilerplate code. We can apply this annotation to a Class or a method.
+
+@Data -> @Data is a convenient shortcut annotation that bundles the features of @ToString, @EqualsAndHashCode, @Getter / @Setter and @RequiredArgsConstructor together: In other words, 
+	 @Data generates all the boilerplate that is normally associated with simple POJOs (Plain Old Java Objects) and beans: getters for all fields, setters for all non-final fields,
+	 and appropriate toString, equals and hashCode implementations that involve the fields of the class, and a constructor that initializes all final fields, as well as all non-final
+	 fields with no initializer that have been marked with @NonNull, in order to ensure the field is never null.
+
+@RequiredArgsConstructor -> at compile time create the constructor with lombok  and also for final fields we can create constructor via using this annotation. 
+                            If we wanted to annotate the Lombok-generated constructor, we would have to pass the annotation with an onConstructor parameter of the @AllArgsConstructor
+			    @RequiredArgsConstructor(onConstructor = @__(@Autowired))
+				
+				
+	XXXXXXXXXXXXXXXXXXXXXXXXX
+	XX                     XX
+	XX Testing Annotations XX
+	XX                     XX
+	XXXXXXXXXXXXXXXXXXXXXXXXX
+	
+	-> on top of the main SpringBootTest class
+1. @SpringBootTest  
+2. @Testcontainers 
+3. @Container
+4. @DynamicPropertySource --> set the properties dynamically into the springcontext at the time of running the Test
+
+********************************************************************************************************************************************
+ ===============
+ TestContainers
+ ===============
+@testcontainers.org -> dependency for get all external instances which are required for test the application like databases mysql,mongodb rabbitmq, kafka as docker imagaes0
+
+mockito-junit-jupitor
+
+
+alt+ctrl+shift+j -> multicourser in IJ
+
+<artifactId>testcontainers-bom</artifactId> <!-- bom(bill of material) is for don't specify the versions for others like mongodb,kafka..etc containers dont specify the version -->
+
+*********************************************************************************************************************************************
+	XXXXXXXXXXXXXXXXXXXXXXXXXXX
+	X classes used in project X
+	XXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+1. com.fasterxml.jackson.databind.ObjectMapper ---> convert pojo(plan old java object) to json and json to pojo
+	
+	
+	
+********************************************************************************************************************************************	
+Maven Multi-Module Project
+
+1. create maven project
+2. create module in maven project and make sure group-id is similar like the root poject and artifact-id is child project name
+3. delete src folder of root project because it is not required now 
+4. migrate child project inside parent project 
+    -> open product-service(child project) pom.xml copy dependencies section and paste it in parent project's product-service(modules) which 
+       we created in step-2 pom.xml file
+	   repeate for all child projects in same manner
+5. we have test-containers dependency in product-service inside dependency-management tag copy it and paste it inside root projects pom.xml
+   so it will available for all modules(services)
+6. make sure for parent project parent module must be spring-boot-parent and for child modules this parent project must be the parent project
+   so for child projects spring-boot-parent is grand-parent we can say.
+7. and last thing we need to copy spring-boot-maven-pluggin and maven-compiler-pluggin in root project's pom.xml file we can copy this from old 
+   child project's pom.xml copy entire build tag
+8. copy source code from old child project to new root projects modules(services)
+
+
+database migration library like Liquibase or Flyway
